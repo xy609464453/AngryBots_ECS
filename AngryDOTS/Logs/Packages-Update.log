@@ -56,3 +56,47 @@ The following packages were updated:
   com.unity.package-manager-ui from version 2.1.2 to 2.2.0
   com.unity.render-pipelines.lightweight from version 5.7.2 to 6.9.0
   com.unity.timeline from version 1.0.0 to 1.1.0
+
+=== Mon Nov 22 02:59:28 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.analytics from version 3.3.2 to 3.3.5
+  com.unity.ide.rider from version 1.1.0 to 1.1.4
+  com.unity.ide.vscode from version 1.1.0 to 1.1.4
+  com.unity.render-pipelines.lightweight from version 6.9.0 to 7.1.8
+  com.unity.test-framework from version 1.0.13 to 1.1.9
+  com.unity.timeline from version 1.1.0 to 1.2.10
+The following packages were removed:
+  com.unity.package-manager-ui@2.2.0
+
+=== Mon Nov 22 04:11:15 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ext.nunit from version 1.0.0 to 1.0.6
+  com.unity.ide.rider from version 1.1.4 to 1.2.1
+  com.unity.ide.vscode from version 1.1.4 to 1.2.3
+  com.unity.render-pipelines.lightweight from version 7.2.1 to 7.3.1
+  com.unity.test-framework from version 1.1.9 to 1.1.27
+  com.unity.timeline from version 1.2.10 to 1.2.18
+  com.unity.xr.legacyinputhelpers from version 2.0.2 to 2.1.7
+
+=== Mon Nov 22 04:50:01 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.analytics from version 3.3.5 to 3.6.11
+  com.unity.cinemachine from version 2.3.3 to 2.5.0
+  com.unity.ide.rider from version 1.2.1 to 2.0.7
+  com.unity.ide.vscode from version 1.2.3 to 1.2.4
+  com.unity.render-pipelines.universal from version 7.7.1 to 10.7.0
+  com.unity.test-framework from version 1.1.27 to 1.1.29
+  com.unity.timeline from version 1.2.18 to 1.4.8
+  com.unity.xr.legacyinputhelpers from version 2.1.7 to 2.1.8

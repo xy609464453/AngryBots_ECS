@@ -25,8 +25,8 @@ public class CollisionSystem : JobComponentSystem
 	{
 		public float radius;
 
-		public ArchetypeChunkComponentType<Health> healthType;
-		[ReadOnly] public ArchetypeChunkComponentType<Translation> translationType;
+		public ComponentTypeHandle<Health> healthType;
+		[ReadOnly] public ComponentTypeHandle<Translation> translationType;
 
 		[DeallocateOnJobCompletion]
 		[ReadOnly] public NativeArray<Translation> transToTestAgainst;
@@ -64,8 +64,8 @@ public class CollisionSystem : JobComponentSystem
 
 	protected override JobHandle OnUpdate(JobHandle inputDependencies)
 	{
-		var healthType = GetArchetypeChunkComponentType<Health>(false);
-		var translationType = GetArchetypeChunkComponentType<Translation>(true);
+		var healthType = GetComponentTypeHandle<Health>(false);
+		var translationType = GetComponentTypeHandle<Translation>(true);
 
 		float enemyRadius = Settings.EnemyCollisionRadius;
 		float playerRadius = Settings.PlayerCollisionRadius;
