@@ -2,25 +2,36 @@
 using Unity.Transforms;
 
 [UpdateInGroup(typeof(InitializationSystemGroup))]
-public class RemoveDeadSystem : ComponentSystem
+public partial class RemoveDeadSystem : SystemBase
 {
-	protected override void OnUpdate()
-	{
-		Entities.ForEach((Entity entity, ref Health health, ref Translation pos) =>
-		{
-			if (health.Value <= 0)
-			{
-				if (EntityManager.HasComponent(entity, typeof(PlayerTag)))
-				{
-					Settings.PlayerDied();
-				}
+    private EntityCommandBufferSystem _bufferSystem;
 
-				else if (EntityManager.HasComponent(entity, typeof(EnemyTag)))
-				{
-					PostUpdateCommands.DestroyEntity(entity);
-					BulletImpactPool.PlayBulletImpact(pos.Value);
-				}
-			}
-		});
-	}
+    protected override void OnCreate()
+    {
+        this._bufferSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+    }
+
+    protected override void OnUpdate()
+    {
+        var manager = this.EntityManager;
+        this.Entities
+            .WithAll<PlayerTag>()
+            .ForEach((Entity entity, ref Health health, ref Translation pos) => {
+                if (health.Value <= 0)
+                {
+                    Settings.PlayerDied();
+                }
+            }).Run();
+
+        var buffer = this._bufferSystem.CreateCommandBuffer();
+        this.Entities
+            .WithAll<EnemyTag>()
+            .ForEach((Entity entity, ref Health health, ref Translation pos) => {
+                if (health.Value <= 0)
+                {
+                    buffer.DestroyEntity(entity);
+                    BulletImpactPool.PlayBulletImpact(pos.Value);
+                }
+            }).Run();
+    }
 }

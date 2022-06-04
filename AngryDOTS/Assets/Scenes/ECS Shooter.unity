@@ -215,7 +215,10 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 50
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 2
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -470,6 +473,25 @@ MonoBehaviour:
     type: 3}
   spawnsPerInterval: 1
   spawnInterval: 1
+--- !u!1 &1028249830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1500293480320252, guid: 387be402c6e254edb8f04a699355f406,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142627572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1028249831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028249830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abce3748ad8fb148a0d6575095b2268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: {fileID: 1218724716591446, guid: c4b4b81382c254a999d09f9375fbe2c7, type: 3}
 --- !u!1001 &1142627572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -484,6 +506,10 @@ PrefabInstance:
     - target: {fileID: 1500293480320252, guid: 387be402c6e254edb8f04a699355f406, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500293480320252, guid: 387be402c6e254edb8f04a699355f406, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4874788804663312, guid: 387be402c6e254edb8f04a699355f406, type: 3}
       propertyPath: m_RootOrder
@@ -541,6 +567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114167452494013206, guid: 387be402c6e254edb8f04a699355f406,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114167452494013206, guid: 387be402c6e254edb8f04a699355f406,
+        type: 3}
       propertyPath: spreadShot
       value: 1
       objectReference: {fileID: 0}
@@ -570,7 +601,8 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1.1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1194508039, guid: 387be402c6e254edb8f04a699355f406, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 387be402c6e254edb8f04a699355f406, type: 3}
 --- !u!1 &1379798260
 GameObject:
@@ -924,7 +956,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0

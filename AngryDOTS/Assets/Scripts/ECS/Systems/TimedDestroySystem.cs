@@ -2,11 +2,8 @@
 using Unity.Jobs;
 using Unity.Transforms;
 
-using UnityEngine;
-
-
 [UpdateAfter(typeof(MoveForwardSystem))]
-public class TimedDestroySystem : JobComponentSystem
+public partial class TimedDestroySystem : SystemBase
 {
     EndSimulationEntityCommandBufferSystem buffer;
 
@@ -15,12 +12,12 @@ public class TimedDestroySystem : JobComponentSystem
         buffer = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
     }
 
-    struct CullingJob : IJobForEachWithEntity<TimeToLive>
+    partial struct CullingJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter commands;
         public float dt;
 
-        public void Execute(Entity entity, int jobIndex, ref TimeToLive timeToLive)
+        public void Execute([EntityInQueryIndex] int jobIndex, Entity entity, ref TimeToLive timeToLive)
         {
             timeToLive.Value -= dt;
             if (timeToLive.Value <= 0f)
@@ -28,7 +25,7 @@ public class TimedDestroySystem : JobComponentSystem
         }
     }
 
-    protected override JobHandle OnUpdate(JobHandle inputDeps)
+    protected override void OnUpdate()
     {
         var job = new CullingJob
         {
@@ -36,10 +33,8 @@ public class TimedDestroySystem : JobComponentSystem
             dt = Time.DeltaTime
         };
 
-        var handle = job.Schedule(this, inputDeps);
-        buffer.AddJobHandleForProducer(handle);
-
-        return handle;
+        this.Dependency = job.Schedule(this.Dependency);
+        buffer.AddJobHandleForProducer(this.Dependency);
     }
 }
 

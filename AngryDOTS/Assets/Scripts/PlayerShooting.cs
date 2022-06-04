@@ -1,4 +1,6 @@
-﻿using Unity.Collections;
+﻿using System.Collections;
+
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
 
@@ -25,17 +27,18 @@ public class PlayerShooting : MonoBehaviour
     Entity bulletEntityPrefab;
 
 
-    void Start()
+    IEnumerator Start()
     {
+        this.gameObject.AddComponent<ConvertToEntity>().ConversionMode = ConvertToEntity.Mode.ConvertAndInjectGameObject;
+        yield return new WaitForSeconds(0.1f);
         if (useECS)
         {
-            using (var blob = new BlobAssetStore())
-            {
-                var world = World.DefaultGameObjectInjectionWorld;
-                manager = world.EntityManager;
-                var setting = GameObjectConversionSettings.FromWorld(world, blob);
-                bulletEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(bulletPrefab, setting);
-            }
+            var conversion = this.GetComponent<PlayerToEntityConversion>();
+            var world = World.DefaultGameObjectInjectionWorld;
+            manager = world.EntityManager;
+            bulletEntityPrefab = manager.GetComponentData<BulletPrefab>(conversion.entity).Value;
+            //var setting = GameObjectConversionSettings.FromWorld(world, null);
+            //bulletEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(bulletPrefab, setting);
         }
     }
 

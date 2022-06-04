@@ -25,13 +25,11 @@ public class EnemySpawner : MonoBehaviour
     {
         if (useECS)
         {
-            using (var blob = new BlobAssetStore())
-            {
-                var world = World.DefaultGameObjectInjectionWorld;
-                manager = world.EntityManager;
-                var setting = GameObjectConversionSettings.FromWorld(world, blob);
-                enemyEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemyPrefab, setting);
-            }
+            var world = World.DefaultGameObjectInjectionWorld;
+            manager = world.EntityManager;
+            var setting = GameObjectConversionSettings.FromWorld(world, null);
+            enemyEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemyPrefab, setting);
+            manager.SetName(enemyEntityPrefab, this.enemyPrefab.name);
         }
     }
 
