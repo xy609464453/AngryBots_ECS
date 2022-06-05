@@ -15,6 +15,7 @@ public partial class RemoveDeadSystem : SystemBase
     {
         var manager = this.EntityManager;
         this.Entities
+            .WithoutBurst()
             .WithAll<PlayerTag>()
             .ForEach((Entity entity, ref Health health, ref Translation pos) => {
                 if (health.Value <= 0)
@@ -25,6 +26,7 @@ public partial class RemoveDeadSystem : SystemBase
 
         var buffer = this._bufferSystem.CreateCommandBuffer();
         this.Entities
+            .WithoutBurst()
             .WithAll<EnemyTag>()
             .ForEach((Entity entity, ref Health health, ref Translation pos) => {
                 if (health.Value <= 0)

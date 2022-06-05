@@ -9,10 +9,11 @@ public partial class PlayerTransformUpdateSystem : SystemBase
         if (Settings.IsPlayerDead())
             return;
 
+        var playerPosition = Settings.PlayerPosition;
         this.Entities
             .WithAll<PlayerTag>()
             .ForEach((ref Translation pos) => {
-                pos = new Translation { Value = Settings.PlayerPosition };
+                pos = new Translation { Value =  playerPosition};
             })
             .Run();
     }

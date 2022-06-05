@@ -661,6 +661,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     0: UNITY_POST_PROCESSING_STACK_V2;PROBUILDER_FBX_PLUGIN_ENABLED
+    1: STARTER_ASSETS_PACKAGES_CHECKED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
