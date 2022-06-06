@@ -44,6 +44,10 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
+        if (Settings.IsPlayerDead() == true)
+        {
+            return;
+        }
         timer += Time.deltaTime;
 
         if (Input.GetButton("Fire1") && timer >= fireRate)

@@ -215,10 +215,7 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 50
     Dutch: 0
-    ModeOverride: 0
     LensShift: {x: 0, y: 0}
-    GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -472,7 +469,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 40720117310684751, guid: 0e3f83bdd0786fc418e17d7be7fd67a3,
     type: 3}
   spawnsPerInterval: 1
-  spawnInterval: 1
+  spawnInterval: 0.1
 --- !u!1 &1028249830 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1500293480320252, guid: 387be402c6e254edb8f04a699355f406,
